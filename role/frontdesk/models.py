@@ -26,7 +26,6 @@ class Doctor(models.Model):
     workArea = models.CharField(max_length=255, blank=True, null=True)
     degree = models.CharField(max_length=255, blank=True, null=True)
     regNumber = models.CharField(max_length=255, blank=True, null=True, unique=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
