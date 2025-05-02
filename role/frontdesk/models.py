@@ -4,8 +4,7 @@ from userapp.models import CustomUser
 # Create your models here.
 
 class Doctor(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.IntegerField()
+    name = models.CharField(max_length=255, blank=True, null=True)
     gender = models.CharField(
         max_length=10,
         choices=[
@@ -16,16 +15,23 @@ class Doctor(models.Model):
         blank=True,
         null=True
     )
-    gender = models.CharField(max_length=10)
-    phone_number = models.CharField(max_length=15)
-    reg = models.CharField(max_length=20, unique=True)
-    department = models.CharField(max_length=50)
-    degree = models.CharField(max_length=50)
-    joining_date = models.DateField()
+    age = models.PositiveIntegerField(blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    password = models.CharField(max_length=255, blank=True, null=True)
+    ipList = models.TextField(blank=True, null=True)  # Assuming this is a list of IPs as text
+    commission = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    bdo = models.CharField(max_length=255, blank=True, null=True)
+    altPhone = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    workArea = models.CharField(max_length=255, blank=True, null=True)
+    degree = models.CharField(max_length=255, blank=True, null=True)
+    regNumber = models.CharField(max_length=255, blank=True, null=True, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name  
+        return self.name or "Unnamed"
+
 
 class TestGroup(models.Model):
     name = models.CharField(max_length=100)

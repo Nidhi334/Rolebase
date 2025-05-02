@@ -22,10 +22,24 @@ class DoctorViewSet(viewsets.ModelViewSet):
         serializer.save(created_by=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
+    def update(self, request, *args, **kwargs):
+        super().update(request, *args, **kwargs)
+        return Response(
+            {"message": "Doctor updated successfully"},
+            status=status.HTTP_200_OK
+        )
+    
+    def destroy(self, request, *args, **kwargs):
+        super().destroy(request, *args, **kwargs)
+        return Response(
+            {"message": "Doctor deleted successfully"},
+            status=status.HTTP_200_OK
+        )
+    
 class TestGroupViewSet(viewsets.ModelViewSet):
     queryset = TestGroup.objects.all()
     serializer_class = TestGroupSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         data = request.data.copy()
@@ -52,7 +66,7 @@ class TestGroupViewSet(viewsets.ModelViewSet):
 class TestViewSet(viewsets.ModelViewSet):
     queryset = Test.objects.all()
     serializer_class = TestSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         data = request.data.copy()
