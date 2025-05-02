@@ -12,7 +12,7 @@ from rest_framework import status
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         data = request.data.copy()
