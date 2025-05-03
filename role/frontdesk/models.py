@@ -11,6 +11,7 @@ class Doctor(models.Model):
             ('male', 'Male'),
             ('female', 'Female'),
             ('other', 'Other')
+            
         ],
         blank=True,
         null=True
@@ -45,16 +46,27 @@ class TestGroup(models.Model):
         return self.name
     
 class Test(models.Model):
+    sample_type = models.CharField(
+        max_length=50,
+        choices=[
+        ('blood', 'Blood'),
+        ('body_fluids', 'Body Fluids'),
+        ('surgical_drain_fluids', 'Surgical Drain Fluids'),
+        ('synovial_fluid', 'Synovial Fluid'),
+        ('peritoneal_fluid', 'Peritoneal Fluid'),
+    ], blank=True, null=True)
+
     group = models.ForeignKey(TestGroup, on_delete=models.CASCADE)
-    # created_by = models.OneToOneField(CustomUser, on_delete=models.CASCADE, editable=False)
     name = models.CharField(max_length=100)
-    code = models.CharField(max_length=100)
-    sample_type = models.CharField(max_length=100)
+    # created_by = models.ForeignKey('CustomUser', on_delete=models.CASCADE, editable=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    timeframe = models.CharField(max_length=100, blank=True, null=True)
+    isactive = models.BooleanField(choices=((True, 'Active'), (False, 'Inactive')), default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name  
+        return self.name
 
 
     
