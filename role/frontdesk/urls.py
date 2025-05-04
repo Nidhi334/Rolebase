@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'doctor', DoctorViewSet)
 router.register(r'testgroup', TestGroupViewSet)
 router.register(r'test', TestViewSet)
+router.register(r'package',PackageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

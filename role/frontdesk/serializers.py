@@ -21,5 +21,12 @@ class TestSerializer(serializers.ModelSerializer):
         model = Test
         fields = '__all__'
 
+class PackageSerializer(serializers.ModelSerializer):
+    # created_by = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.filter(), default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Package
+        fields = '__all__'
+
 
 
