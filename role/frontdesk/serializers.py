@@ -3,7 +3,7 @@ from .models import *
 from userapp.models import *
 
 class DoctorSerializer(serializers.ModelSerializer):
-    created_by = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.filter(), default=serializers.CurrentUserDefault())
+    # created_by = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.filter(), default=serializers.CurrentUserDefault())
     class Meta:
         model = Doctor
         fields = '__all__'
